@@ -18,7 +18,7 @@ fun main() {
 
 }
 
-open class Calculator(num1 : Double, operator : String, num2 : Double) {
+class Calculator(num1 : Double, operator : String, num2 : Double) {
     var num1 : Double = num1
     var operator : String = operator
     var num2 : Double = num2
@@ -37,7 +37,7 @@ open class Calculator(num1 : Double, operator : String, num2 : Double) {
     }
 
 
-    open fun calculation() {
+    fun calculation() {
         println(content)
     }
 
