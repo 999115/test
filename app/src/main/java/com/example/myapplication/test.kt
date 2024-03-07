@@ -10,62 +10,89 @@ fun main() {
         println("두번째 숫자를 입력해주세요.")
         var userNum2 = readLine()!!.toDouble()
 
-        var result = Calculator(userNum1, userOperator, userNum2)
-
-        result.calculation()
+        var content = when(userOperator) {
+            "+" -> AddOperation(userNum1, userOperator, userNum2)
+            "-" -> SubtractOperation(userNum1, userOperator, userNum2)
+            "*" -> MultiplyOperation(userNum1, userOperator, userNum2)
+            "/" -> DivideOperation(userNum1, userOperator, userNum2)
+            else -> ElseOperation(userNum1, userOperator, userNum2)
+        }
+        content.calculate()
     }
-
 
 }
 
-class Calculator(num1 : Double, operator : String, num2 : Double) {
+open class Calculator(num1 : Double, operator : String, num2 : Double) {
     var num1 : Double = num1
     var operator : String = operator
     var num2 : Double = num2
-    var content : Any = ""
+    var result : Any = ""
 
     init {
-        content  =
-            when(operator){
-                "+" -> num1+num2
-                "-" -> num1-num2
-                "*" -> num1*num2
-                "/" -> num1/num2
-                "%" -> num1%num2
-                else -> "잘못된 입력입니다."
-            }
+        this.result  = result
     }
 
-
-    fun calculation() {
-        println(content)
+    open fun calculate() {
+        println(result)
     }
 
 }
 
-//class AddOperation(num1 : Int, operator : String, num2 : Int) : Calculator(num1, operator, num2) {
-//
-//    init {
-//        content  =
-//            when(operator){
-//                "+" -> num1+num2
-//                "-" -> num1-num2
-//                "*" -> num1*num2
-//                "/" -> num1/num2
-//                "%" -> num1%num2
-//                else -> "잘못된 입력입니다."
-//            }
-//    }
-//}
-//
-//class SubstractOperation(num1 : Int, operator : String, num2 : Int) : Calculator(num1, operator, num2) {
-//
-//}
-//
-//class MultiplyOperation(num1 : Int, operator : String, num2 : Int) : Calculator(num1, operator, num2) {
-//
-//}
-//
-//class DivideOperation(num1 : Int, operator : String, num2 : Int) : Calculator(num1, operator, num2) {
-//
-//}
+class AddOperation(num1 : Double, operator : String, num2 : Double) : Calculator(num1, operator, num2) {
+    init {
+        result = num1+num2
+    }
+
+    override fun calculate() {
+//        super.calculate()
+        println(result)
+    }
+}
+
+class SubtractOperation(num1 : Double, operator : String, num2 : Double) : Calculator(num1, operator, num2) {
+
+    init {
+        result = num1-num2
+    }
+    override fun calculate() {
+//        super.calculate()
+        println(result)
+    }
+}
+
+class MultiplyOperation(num1 : Double, operator : String, num2 : Double) : Calculator(num1, operator, num2) {
+    init {
+        result = num1*num2
+    }
+
+    override fun calculate() {
+//        super.calculate()
+        println(result)
+    }
+}
+
+class DivideOperation(num1 : Double, operator : String, num2 : Double) : Calculator(num1, operator, num2) {
+    init {
+        result = if (num2 != 0.0){
+            num1/num2
+        }else {
+            "0으로 나눌 수 없습니다."
+        }
+    }
+
+    override fun calculate() {
+//        super.calculate()
+        println(result)
+    }
+}
+
+class ElseOperation(num1 : Double, operator : String, num2 : Double) : Calculator(num1, operator, num2) {
+    init {
+        result = "잘못된 연산자입니다."
+    }
+
+    override fun calculate() {
+//        super.calculate()
+        println(result)
+    }
+}
