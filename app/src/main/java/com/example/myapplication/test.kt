@@ -34,12 +34,12 @@ fun main() {
         userOperator = readLine()!!
         val content = when(userOperator) {
             "-1" -> break
-            "+" -> AddOperation(userNum1, userOperator, userNum2)
-            "-" -> SubtractOperation(userNum1, userOperator, userNum2)
-            "*" -> MultiplyOperation(userNum1, userOperator, userNum2)
-            "/" -> DivideOperation(userNum1, userOperator, userNum2)
-            "%" -> OddOperation(userNum1, userOperator, userNum2)
-            else -> ElseOperation(userNum1, userOperator, userNum2)
+            "+" -> Calculator(AddOperation(userNum1, userOperator, userNum2))
+            "-" -> Calculator(SubtractOperation(userNum1, userOperator, userNum2))
+            "*" -> Calculator(MultiplyOperation(userNum1, userOperator, userNum2))
+            "/" -> Calculator(DivideOperation(userNum1, userOperator, userNum2))
+            "%" -> Calculator(OddOperation(userNum1, userOperator, userNum2))
+            else -> Calculator(ElseOperation(userNum1, userOperator, userNum2))
         }
 
         content.calculate()
