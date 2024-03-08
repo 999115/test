@@ -2,11 +2,13 @@ package com.example.myapplication
 
 fun main() {
 
+    println("첫번째 숫자를 입력해주세요.")
+    var userNum1 = readLine()!!.toDouble()
+    println("연산자를 입력해주세요.")
+    var userOperator = readLine()!!
+
     while (true){
-        println("첫번째 숫자를 입력해주세요.")
-        var userNum1 = readLine()!!.toDouble()
-        println("연산자를 입력해주세요.")
-        var userOperator = readLine()!!
+
         println("두번째 숫자를 입력해주세요.")
         var userNum2 = readLine()!!.toDouble()
 
@@ -15,9 +17,18 @@ fun main() {
             "-" -> SubtractOperation(userNum1, userOperator, userNum2)
             "*" -> MultiplyOperation(userNum1, userOperator, userNum2)
             "/" -> DivideOperation(userNum1, userOperator, userNum2)
+            "%" -> OddOperation(userNum1, userOperator, userNum2)
             else -> ElseOperation(userNum1, userOperator, userNum2)
         }
         content.calculate()
+
+        println("계산을 그만하려면 -1을, 아니라면 추가 연산자를 입력해주세요.")
+        userOperator = readLine()!!
+        if (userOperator == "-1"){
+            break
+        }else {
+            userNum1 = Calculator(userNum1, userOperator, userNum2).result.toDouble()
+        }
     }
 
 }
@@ -78,6 +89,17 @@ class DivideOperation(num1 : Double, operator : String, num2 : Double) : Calcula
         }else {
             "0으로 나눌 수 없습니다."
         }
+    }
+
+    override fun calculate() {
+//        super.calculate()
+        println(result)
+    }
+}
+
+class OddOperation(num1 : Double, operator : String, num2 : Double) : Calculator(num1, operator, num2) {
+    init {
+        result = num1%num2
     }
 
     override fun calculate() {
