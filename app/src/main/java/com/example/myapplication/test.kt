@@ -3,14 +3,32 @@ package com.example.myapplication
 fun main() {
 
     println("첫번째 숫자를 입력해주세요.")
-    var userNum1 = readLine()!!.toDouble()
+    var userNum1 = 0.0
+    while (true){
+        try {
+            userNum1 = readLine()!!.toDouble()
+            break
+        }
+        catch (e : NumberFormatException){
+            println("숫자만 입력해주세요.")
+        }
+    }
+
     var userOperator = ""
     var userNum2 = 0.0
 
     while (true){
 
         println("두번째 숫자를 입력해주세요.")
-        userNum2 = readLine()!!.toDouble()
+        while (true){
+            try {
+                userNum2 = readLine()!!.toDouble()
+                break
+            }
+            catch (e : NumberFormatException){
+                println("숫자만 입력해주세요.")
+            }
+        }
 
         println("계산을 그만하려면 -1을, 아니라면 연산자를 입력해주세요.")
         userOperator = readLine()!!
@@ -124,6 +142,6 @@ class ElseOperation(num1 : Double, operator : String, num2 : Double) : Calculato
 
     override fun calculate() {
 //        super.calculate()
-        println("잘못된 연산자입니다.")
+        println("잘못된 입력입니다. 두번째 숫자 입력을 초기화합니다.")
     }
 }
